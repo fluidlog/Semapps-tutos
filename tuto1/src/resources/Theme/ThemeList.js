@@ -9,6 +9,9 @@ const useStyles = makeStyles(theme => ({
   },
   alignRight: {
     textAlign: 'right'
+  },
+  bold: {
+    fontWeight: 'bold'
   }
 }));
 
@@ -26,8 +29,9 @@ const DocumentList = props => {
     <ListBase {...props}>
       <Box p={2} pt={1}>
         <Datagrid rowClick="show" rowStyle={selectedRowStyle}>
-          <TextField source="pair:label" />
-          <DateField source="dc:created" headerClassName={classes.alignCenter} cellClassName={classes.alignCenter} />
+          <TextField source="pair:label" headerClassName={classes.bold} />
+          <TextField source="pair:description" headerClassName={classes.bold} />
+          <DateField source="dc:created" headerClassName={classes.bold} />
         </Datagrid>
       </Box>
     </ListBase>
