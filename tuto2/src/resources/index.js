@@ -1,4 +1,4 @@
 // export { default as Circle } from './Circle';
 // export { default as Event } from './Event';
-// export { default as Person } from './Person';
 export { default as Document } from './tuto1';
+export { default as Person } from './tuto2';
