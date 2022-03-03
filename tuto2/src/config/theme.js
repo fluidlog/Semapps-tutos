@@ -33,9 +33,30 @@ const theme = createTheme({
         }
       }
     },
+    RaListToolbar: {
+      toolbar: {
+        paddingLeft: '0 !important'
+      }
+    },
+    RaSingleFieldList: {
+      root: {
+        marginTop: 0,
+        marginBottom: 0
+      }
+    },
     MuiTab: {
       labelIcon: {
         paddingTop: 0
+        // minHeight: 0
+      }
+      // wrapper: {
+      //   alignItems: null,
+      //   flexDirection: null
+      // }
+    },
+    MuiChip: {
+      colorSecondary: {
+        color: 'black !important'
       }
     }
   }

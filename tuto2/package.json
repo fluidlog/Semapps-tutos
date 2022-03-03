@@ -1,12 +1,16 @@
 {
-  "name": "organigraph",
+  "name": "tuto2",
   "version": "0.1.0",
   "dependencies": {
     "@semapps/archipelago-layout": "0.3.8",
     "@semapps/semantic-data-provider": "0.3.8",
+    "circlepack-chart": "^1.5.1",
+    "d3": "^6.7.0",
     "react": "^16.13.1",
     "react-admin": "^3.13.1",
-    "react-dom": "^16.13.1"
+    "react-dom": "^16.13.1",
+    "react-kapsule": "^2.2.2",
+    "react-resize-detector": "^6.7.6"
   },
   "devDependencies": {
     "react-scripts": "3.4.0"
