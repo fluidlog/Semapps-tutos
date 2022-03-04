@@ -121,8 +121,6 @@ const HomePage = () => {
     }
 
     function zoom(event, d) {
-      const focus0 = focus;
-
       focus = d;
 
       const transition = svg.transition()

@@ -1,101 +1,157 @@
 import * as d3 from "d3";
-import miserables from './miserables.json';
 import React, { useEffect } from 'react';
+
+const json = {
+      "nodes": [
+              {"id":0, "label": "Bastien", "@type":"pair:Person" },
+              {"id":1, "label": "Simon", "@type":"pair:Person" },
+              {"id":2, "label": "Seb", "@type":"pair:Person" },
+              {"id":3, "label": "Yannick", "@type":"pair:Person" },
+              {"id":4, "label": "Vincent", "@type":"pair:Person" },
+              {"id":5, "label": "Pierre", "@type":"pair:Person" },
+              {"id":6, "label": "Niko", "@type":"pair:Person" },
+              {"id":7, "label": "Guillaume", "@type":"pair:Person" }
+      ],
+      "links": [
+              {"index":0, "source": 0, "target": 1 },
+              {"index":1, "source": 0, "target": 2 },
+              {"index":2, "source": 0, "target": 3 },
+              {"index":3, "source": 3, "target": 4 },
+              {"index":4, "source": 3, "target": 5 },
+              {"index":5, "source": 3, "target": 6 },
+              {"index":6, "source": 3, "target": 7 }
+      ]
+}
 
 function Graph() {
 
-  const scale = d3.scaleOrdinal(d3.schemeCategory10);
+    const height = 600;
+    const width = 1000;
 
-  const color = (d)=>{
-    return scale(d.group)
-  };
+    const simulation = d3.forceSimulation()
+        .force("link", d3.forceLink().id(function(d) { return d.id; }).distance(200).strength(1))
+        .force("charge", d3.forceManyBody())
+        .force("center", d3.forceCenter(width / 2, height / 2));
 
-  const drag = simulation => {
+    useEffect(() => {
+      const svg = d3.select('.chart')
+        .attr('width', width)
+        .attr('height', height);
 
-    function dragstarted(event) {
-      if (!event.active) simulation.alphaTarget(0.3).restart();
-      event.subject.fx = event.subject.x;
-      event.subject.fy = event.subject.y;
-    }
+      var link = svg.append("g")
+          .attr("class", "links")
+        .selectAll("line")
+        .data(json.links)
+        .enter().append("line");
 
-    function dragged(event) {
-      event.subject.fx = event.x;
-      event.subject.fy = event.y;
-    }
+      var node = svg.append("g")
+          .attr("class", "node")
+        .selectAll("#node")
+        .data(json.nodes)
+        .enter()
+        .append("g")
+        .attr("id", "node")
+        .attr("class", "g_node")
 
-    function dragended(event) {
-      if (!event.active) simulation.alphaTarget(0);
-      event.subject.fx = null;
-      event.subject.fy = null;
-    }
+        node
+          .append("rect")
+          .attr("id", "nodecircle")
+          .attr("class", "nodecircle")
+          .attr("x", function (d){
+            var radius = 40;
+            var x = -radius;
+            return x;
+          })
+          .attr("y", function (d){
+            var radius = 40;
+            var y = -radius;
+            return y;
+          })
+          .attr("width", function (d){
+            var radius = 40;
+            var width = radius*2;
+            return width;
+          })
+          .attr("height", function (d){
+            var radius = 40;
+            var height = radius*2;
+            return height;
+          })
+          .attr("rx", 50)
+          .attr("ry", 50)
 
-    return d3.drag()
-        .on("start", dragstarted)
-        .on("drag", dragged)
-        .on("end", dragended);
-  }
+          .attr("style",function(d) {
+            var style =
+                        "fill:#FFF800;"
+                        +"stroke:#FFF800;"
+                        +"stroke-width:1;"
 
+            return style;
+          })
 
-  const height = 600;
-  const width = 600;
+          .style("stroke-opacity", 1)
+          .style("cursor", "move")
+          .style("opacity", 1)
 
-  const data = miserables;
+          // Ajout du label sur les noeuds
 
-  const links = data.links.map(d => ({...d}));
-  const nodes = data.nodes.map(d => ({...d}));
+        var fo_content_closed_node_label = node
+          .append("foreignObject")
+          .attr("id", "fo_content_closed_node_label")
+          .attr("x", -160 / 2)
+          .attr("y", -60 / 2)
+          .attr("width", 160)
+          .attr("height", 60)
 
-  const simulation = d3.forceSimulation(nodes)
-      .force("link", d3.forceLink(links).id(d => d.id))
-      .force("charge", d3.forceManyBody())
-      .force("center", d3.forceCenter(width / 2, height / 2));
+        //fo xhtml
+        var fo_xhtml_content_closed_node_label = fo_content_closed_node_label
+          .append('xhtml:div')
+          .attr("class", "fo_xhtml_content_closed_node_label")
+          .attr("style", "width:"+160+"px;"
+                        +"height:"+60+"px;")
 
-  // invalidation.then(() => simulation.stop());
+        //label_closed_node
+        var label_closed_node = fo_xhtml_content_closed_node_label
+          .append("div")
+          .attr("id", "label_closed_node")
+          .attr("class", "label_closed_node")
+          .attr("style", function(d) {
+            var color = "#FFF800";
+            var style = "background-color:rgba(" + color
+                                        + "," + .5 + ");"
+                                        + "border: 1px solid rgba("
+                                        + color + ","
+                                        + .5 + ");"
+                                        + "-moz-border-radius:" + 20 + "px;"
+                                        + "-webkit-border-radius:" + 20 + "px;"
+                                        + "border-radius:" + 20 + "px;"
+            return style;
+          })
+          .html(function(d, i) {
+               return d.label;
+          })
 
-  // const chart= svg.node();
-  useEffect(() => {
-    const svg = d3.select('.chart2')
-      .attr('width', width)
-      .attr('height', height);
+      simulation
+          .nodes(json.nodes)
+          .on("tick", ticked);
 
-    // console.log(svg);
+      simulation.force("link")
+          .links(json.links);
 
-    const link = svg.append("g")
-        .attr("stroke", "#999")
-        .attr("stroke-opacity", 0.6)
-      .selectAll("line")
-      .data(links)
-      .join("line")
-        .attr("stroke-width", d => Math.sqrt(d.value));
+      function ticked() {
+        link
+            .attr("x1", function(d) { return d.source.x; })
+            .attr("y1", function(d) { return d.source.y; })
+            .attr("x2", function(d) { return d.target.x; })
+            .attr("y2", function(d) { return d.target.y; });
 
-    const node = svg.append("g")
-        .attr("stroke", "#fff")
-        .attr("stroke-width", 1.5)
-      .selectAll("circle")
-      .data(nodes)
-      .join("circle")
-        .attr("r", 5)
-        .attr("fill", color)
-        .call(drag(simulation));
-
-    node.append("title")
-          .text(d => d.id);
-
-    simulation.on("tick", () => {
-      link
-          .attr("x1", d => d.source.x)
-          .attr("y1", d => d.source.y)
-          .attr("x2", d => d.target.x)
-          .attr("y2", d => d.target.y);
-
-      node
-          .attr("cx", d => d.x)
-          .attr("cy", d => d.y);
-    });
+        d3.selectAll(".g_node")
+        .attr("transform", function(d) { return "translate(" + d.x + "," + d.y + ")"; });
+      }
   });
 
-
   return (
-    <svg className='chart2'>
+    <svg className='chart'>
     </svg>
   );
 }
