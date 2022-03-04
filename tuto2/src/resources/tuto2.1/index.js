@@ -6,7 +6,7 @@ export default {
     list: GraphList,
     icon: RadioButtonUncheckedIcon,
     options: {
-      label: 'tuto2',
+      label: 'tuto2.1',
       panelSize: 5
     }
   },
