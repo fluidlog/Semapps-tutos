@@ -111,7 +111,7 @@ function Graph() {
                         +"height:"+60+"px;")
 
         //label_closed_node
-        var label_closed_node = fo_xhtml_content_closed_node_label
+        fo_xhtml_content_closed_node_label
           .append("div")
           .attr("id", "label_closed_node")
           .attr("class", "label_closed_node")
