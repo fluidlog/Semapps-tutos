@@ -12,7 +12,7 @@ export default {
   },
   dataModel: {
     types: ['pair:Person'],
-    containerUri: process.env.REACT_APP_MIDDLEWARE_URL + 'users',
+    containerUri: process.env.REACT_APP_MIDDLEWARE_META_URL + 'users',
     // dereference: ['pair:hasLocation/pair:hasPostalAddress'],
     slugField: 'pair:label'
   },

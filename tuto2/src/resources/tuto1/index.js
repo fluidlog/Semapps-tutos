@@ -12,7 +12,7 @@ export default {
   },
   dataModel: {
     types: ['pair:Theme'],
-    containerUri: process.env.REACT_APP_MIDDLEWARE_URL + 'themes',
+    containerUri: process.env.REACT_APP_MIDDLEWARE_META_URL + 'themes',
     slugField: 'pair:label'
   },
   translations: {

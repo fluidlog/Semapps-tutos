@@ -11,9 +11,9 @@ export default {
     }
   },
   dataModel: {
-    types: ['og:Circle'],
-    containerUri: process.env.REACT_APP_MIDDLEWARE_URL + 'groups',
-    dereference: ['sec:publicKey', 'pair:hasLocation/pair:hasPostalAddress', 'pair:organizationOfMembership'],
+    types: ['pair:Person'],
+    containerUri: process.env.REACT_APP_MIDDLEWARE_META_URL + 'users',
+    //dereference: ['sec:publicKey', 'pair:hasLocation/pair:hasPostalAddress', 'pair:organizationOfMembership'],
     slugField: 'pair:label'
   },
   translations: {

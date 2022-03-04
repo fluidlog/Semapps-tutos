@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { CirclePacking } from '@nivo/circle-packing';
-import { generateLibTree } from '@nivo/generators';
+//import { generateLibTree } from '@nivo/generators';
 
 // const libTree = generateLibTree();
 // console.log('libTree', libTree);
