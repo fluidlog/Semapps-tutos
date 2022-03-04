@@ -6,7 +6,7 @@ export default {
     list: PersonList,
     icon: PersonIcon,
     options: {
-      label: 'Tuto2',
+      label: 'Tuto1.2',
       panelSize: 5
     }
   },

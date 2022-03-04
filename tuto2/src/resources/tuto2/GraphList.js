@@ -1,10 +1,10 @@
 import React from 'react';
-import MiserableGraph from '../../graph/MiserableGraph.js';
+import TrombinoGraph from '../../graph/TrombinoGraph';
 
 const GraphList = () => {
   return (
     <div className="App">
-      <MiserableGraph></MiserableGraph>
+      <TrombinoGraph></TrombinoGraph>
     </div>
   );
 }

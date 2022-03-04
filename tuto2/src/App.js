@@ -1,16 +1,4 @@
 import React from 'react';
-// import Graph from './graph/MiserableGraph.js';
-//
-// const App = () => {
-//   return (
-//     <div className="App">
-//       <Graph></Graph>
-//     </div>
-//   );
-// }
-//
-// export default App;
-
 import { Admin } from 'react-admin';
 
 import dataProvider from './config/dataProvider';
