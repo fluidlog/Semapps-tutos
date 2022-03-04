@@ -1,35 +1,35 @@
-import PersonList from './PersonList';
-import PersonIcon from '@material-ui/icons/Person';
+import GraphList from './GraphList';
+import RadioButtonUncheckedIcon from '@material-ui/icons/RadioButtonUnchecked';
 
 export default {
   config: {
-    list: PersonList,
-    icon: PersonIcon,
+    list: GraphList,
+    icon: RadioButtonUncheckedIcon,
     options: {
-      label: 'Tuto2',
+      label: 'tuto2',
       panelSize: 5
     }
   },
   dataModel: {
     types: ['pair:Person'],
-    containerUri: process.env.REACT_APP_MIDDLEWARE_META_URL + 'users',
-    // dereference: ['pair:hasLocation/pair:hasPostalAddress'],
+    containerUri: process.env.REACT_APP_MIDDLEWARE_URL + 'users',
     slugField: 'pair:label'
   },
   translations: {
     fr: {
-      name: 'Personne |||| Personnes',
+      name: 'Cercle |||| Cercles',
       fields: {
-        'pair:firstName': 'Prénom',
-        'pair:lastName': 'Nom de famille',
-        'pair:comment': 'En deux mots',
-        'og:leads': 'Référent',
-        image: 'Photo',
-        'pair:involvedIn': 'Contributeur',
-        'pair:affiliatedBy': 'Membre de',
-        'pair:offers': 'A pour compétences',
-        'pair:hasTopic': 'A pour intérêt',
-        'pair:hasLocation': 'Adresse'
+        'pair:label': 'Nom',
+        'og:purpose': 'Raison d\'être',
+        'og:accountabilities': 'Redevabilités',
+        'og:domain': 'Domaine',
+        'og:leadBy': 'Référents',
+        'pair:involves': 'Contributeurs',
+        'pair:partOf': 'Fait partie de',
+        'pair:hasPart': 'Sous-cercles',
+        'pair:documentedBy': 'Documents',
+        'pair:concernedBy': 'Agenda',
+        'pair:homePage': 'Canaux de communication'
       }
     }
   }
