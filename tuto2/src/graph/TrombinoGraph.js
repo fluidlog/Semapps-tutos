@@ -30,7 +30,7 @@ function Graph() {
     const width = 1000;
 
     const simulation = d3.forceSimulation()
-        .force("link", d3.forceLink().id(function(d) { return d.id; }).distance(200).strength(1))
+        .force("link", d3.forceLink().id(function(d) { return d.id; }).distance(100).strength(1))
         .force("charge", d3.forceManyBody())
         .force("center", d3.forceCenter(width / 2, height / 2));
 
