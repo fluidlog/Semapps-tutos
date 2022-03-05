@@ -1,0 +1,23 @@
+.links line {
+  stroke: #aaa;
+  stroke-width: 5px;
+}
+
+.nodes circle {
+  pointer-events: all;
+  stroke: none;
+  stroke-width: 40px;
+}
+
+.label_closed_node {
+  padding: 2px;
+  text-align: center;
+}
+
+.fo_xhtml_content_closed_node_label{
+  display: flex;
+  flex-direction:column;
+  justify-content:center;
+  align-content:center;
+  align-items:center;
+}

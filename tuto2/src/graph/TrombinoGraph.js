@@ -1,5 +1,6 @@
 import * as d3 from "d3";
 import React, { useEffect } from 'react';
+import './trombinoGraph.css';
 
 const json = {
       "nodes": [
@@ -52,28 +53,44 @@ function Graph() {
         .append("g")
         .attr("id", "node")
         .attr("class", "g_node")
+        .call(d3.drag()
+            .on("start", function dragstarted(event,d) {
+              if (!event.active) simulation.alphaTarget(0.3).restart();
+              d.fx = d.x;
+              d.fy = d.y;
+            })
+            .on("drag", function dragged(event,d) {
+              d.fx = event.x;
+              d.fy = event.y;
+            })
+            .on("end", function dragended(event,d) {
+              if (!event.active) simulation.alphaTarget(0);
+              d.fx = null;
+              d.fy = null;
+            })
+          );
 
         node
           .append("rect")
           .attr("id", "nodecircle")
           .attr("class", "nodecircle")
           .attr("x", function (d){
-            var radius = 40;
+            var radius = 20;
             var x = -radius;
             return x;
           })
           .attr("y", function (d){
-            var radius = 40;
+            var radius = 20;
             var y = -radius;
             return y;
           })
           .attr("width", function (d){
-            var radius = 40;
+            var radius = 20;
             var width = radius*2;
             return width;
           })
           .attr("height", function (d){
-            var radius = 40;
+            var radius = 20;
             var height = radius*2;
             return height;
           })
@@ -148,6 +165,7 @@ function Graph() {
         d3.selectAll(".g_node")
         .attr("transform", function(d) { return "translate(" + d.x + "," + d.y + ")"; });
       }
+
   });
 
   return (
