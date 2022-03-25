@@ -21,6 +21,7 @@ const DocumentList = props => {
   const matches = location.pathname.split('/');
   const currentRecordId = matches.length > 2 ? decodeURIComponent(matches[2]) : undefined;
 
+  console.log("toto" )
   const selectedRowStyle = useCallback(record => ({
     backgroundColor: record.id === currentRecordId ? 'rgba(0, 0, 0, 0.04)' : undefined
   }), [currentRecordId]);

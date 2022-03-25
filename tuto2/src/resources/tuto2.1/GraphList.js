@@ -1,10 +1,10 @@
 import React from 'react';
 import { ListBase } from "react-admin";
-import TrombinoGraph from '../../graph/TrombinoGraph';
+import LaunchGraph from '../../graph/LaunchGraph';
 
 const GraphList = props => (
-    <ListBase perPage={1000} {...props}>
-      <TrombinoGraph></TrombinoGraph>
+    <ListBase perPage={100} {...props}>
+      <LaunchGraph></LaunchGraph>
     </ListBase>
 )
 

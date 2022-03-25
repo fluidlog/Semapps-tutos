@@ -11,8 +11,8 @@ export default {
     }
   },
   dataModel: {
-    types: ['pair:Person'],
-    containerUri: process.env.REACT_APP_MIDDLEWARE_URL + 'users',
+    types: ['pair:Organization'],
+    containerUri: process.env.REACT_APP_MIDDLEWARE_URL + 'organization',
     slugField: 'pair:label'
   },
   translations: {

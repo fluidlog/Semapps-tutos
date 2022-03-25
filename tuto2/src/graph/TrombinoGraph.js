@@ -1,5 +1,6 @@
 import * as d3 from "d3";
 import React, { useEffect } from 'react';
+import { useListContext } from "react-admin";
 import './trombinoGraph.css';
 
 const json = {
@@ -25,7 +26,6 @@ const json = {
 }
 
 function Graph() {
-
     const height = 600;
     const width = 1000;
 
